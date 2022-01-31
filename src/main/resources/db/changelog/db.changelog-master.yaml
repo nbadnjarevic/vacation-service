@@ -1,0 +1,35 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: users-and-vacations
+      author: nemanja.badnjarevic@mozzartbet.com
+
+      changes:
+        - comment: Users and Vacations
+          strip-comments: true
+          sql: |
+            create table users(
+              id number primary key,
+              created_on timestamp not null,
+              modified_on timestamp not null,
+              username varchar2(40) not null,
+              password varchar2(40),
+              role varchar2(20)
+            );
+
+            create sequence sq_users;
+
+            create table vacations(
+              id number primary key,
+              created_on timestamp not null,
+              modified_on timestamp not null,
+              starting_date timestamp,
+              length int,
+              approved number(1) default 0,
+              user_id number not null
+            );
+
+            create sequence sq_vacations
+
+            alter table users add constraint uc_username unique(username);
+            alter table vacations add constraint fk_vacation_user foreign key(user_id) references users;
