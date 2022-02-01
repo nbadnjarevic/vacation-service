@@ -5,7 +5,8 @@ databaseChangeLog:
       author: nemanja.badnjarevic@mozzartbet.com
 
       changes:
-        - comment: Users and Vacations
+        - sql:
+          comment: Users and Vacations
           strip-comments: true
           sql: |
             create table users(
@@ -29,7 +30,7 @@ databaseChangeLog:
               user_id number not null
             );
 
-            create sequence sq_vacations
+            create sequence sq_vacations;
 
             alter table users add constraint uc_username unique(username);
             alter table vacations add constraint fk_vacation_user foreign key(user_id) references users;

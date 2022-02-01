@@ -27,6 +27,6 @@ public class Vacation implements Serializable, BaseEntity {
 
   private Boolean approved;
 
-  private User user;
+  private Long userId;
 
 }
