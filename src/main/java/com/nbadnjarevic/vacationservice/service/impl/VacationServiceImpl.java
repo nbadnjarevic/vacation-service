@@ -1,6 +1,7 @@
 package com.nbadnjarevic.vacationservice.service.impl;
 
 import com.nbadnjarevic.vacationservice.domain.Vacation;
+import com.nbadnjarevic.vacationservice.domain.dto.VacationRequest;
 import com.nbadnjarevic.vacationservice.mapper.UserMapper;
 import com.nbadnjarevic.vacationservice.mapper.VacationMapper;
 import com.nbadnjarevic.vacationservice.service.VacationService;
@@ -20,8 +21,13 @@ public class VacationServiceImpl implements VacationService {
   final UserMapper userMapper;
 
   @Override
-  public Vacation save(Vacation vacation) throws Exception {
+  public Vacation save(VacationRequest request) throws Exception {
     try{
+      Vacation vacation = Vacation.builder()
+          .startingDate(request.getStartingDate())
+          .userId(request.getUserId())
+          .length(request.getLength())
+          .build();
       vacation = vacationMapper.save(vacation);
       return vacation;
     } catch(Exception e) {

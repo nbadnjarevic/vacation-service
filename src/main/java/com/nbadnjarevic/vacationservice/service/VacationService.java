@@ -1,11 +1,12 @@
 package com.nbadnjarevic.vacationservice.service;
 
 import com.nbadnjarevic.vacationservice.domain.Vacation;
+import com.nbadnjarevic.vacationservice.domain.dto.VacationRequest;
 import java.util.List;
 
 public interface VacationService {
 
-  public Vacation save(Vacation vacation) throws Exception;
+  public Vacation save(VacationRequest request) throws Exception;
 
   public Vacation getVacation(Long vacationId);
 
