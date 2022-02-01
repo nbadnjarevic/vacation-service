@@ -8,4 +8,6 @@ public interface UserService {
 
   public User getUser(Long userId);
 
+  public User register(User user);
+
 }
