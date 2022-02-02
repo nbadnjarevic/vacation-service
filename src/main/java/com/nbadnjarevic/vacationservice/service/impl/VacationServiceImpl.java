@@ -7,6 +7,7 @@ import com.nbadnjarevic.vacationservice.mapper.VacationMapper;
 import com.nbadnjarevic.vacationservice.service.VacationService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -36,16 +37,19 @@ public class VacationServiceImpl implements VacationService {
   }
 
   @Override
+  @Cacheable(value = "vacationCache")
   public Vacation getVacation(Long vacationId) {
     return vacationMapper.getById(vacationId);
   }
 
   @Override
+  @Cacheable(value = "vacationCache")
   public List<Vacation> getVacationsForUser(Long userId) {
     return vacationMapper.getByUserId(userId);
   }
 
   @Override
+  @Cacheable(value = "vacationCache")
   public List<Vacation> getAllVacations() {
     return vacationMapper.getAllVacations();
   }

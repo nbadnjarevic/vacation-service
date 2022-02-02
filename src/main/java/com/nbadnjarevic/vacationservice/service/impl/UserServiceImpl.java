@@ -7,6 +7,7 @@ import com.nbadnjarevic.vacationservice.exception.UserException.UserExceptionCod
 import com.nbadnjarevic.vacationservice.mapper.UserMapper;
 import com.nbadnjarevic.vacationservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Cacheable(value = "userCache")
   public User getUser(Long userId) {
     return userMapper.getById(userId);
   }
