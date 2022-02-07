@@ -19,9 +19,9 @@ public interface UserMapper extends BaseMapper<User> {
   public User getById(@Param("id") Long id);
 
   @Select("select id, created_on createdOn, modified_on modifiedOn, username, password, role from users where username = #{username}")
-  public User getByUsername(@Param("id") String username);
+  public User getByUsername(@Param("username") String username);
 
-  @Insert("insert into users(id, created_on, modified_on, username, password, role) values (#{id}, current_timestamp, current_timestamp, #{username}, #{password}, #{role})")
+  @Insert("insert into users(id, created_on, modified_on, username, password, role) values (#{id}, current_timestamp, current_timestamp, #{username}, #{password}, isnull(#{role}, 'REGULAR'))")
   @SelectKey(before = true, statement = "select sq_users.nextval from dual", keyProperty = "id", resultType = Long.class)
   public int insert(User entity);
 

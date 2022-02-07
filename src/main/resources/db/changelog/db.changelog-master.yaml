@@ -15,7 +15,7 @@ databaseChangeLog:
               modified_on timestamp not null,
               username varchar2(40) not null,
               password varchar2(40),
-              role varchar2(20)
+              role enum('REGULAR', 'ADMINISTRATOR')
             );
 
             create sequence sq_users;

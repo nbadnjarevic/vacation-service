@@ -19,7 +19,7 @@ public interface VacationMapper extends BaseMapper<Vacation> {
   @Select("select id, created_on createdOn, modified_on modifiedOn, starting_date startingDate, length, approved, user_id userId from vacations where id = #{id}")
   public Vacation getById(@Param("id") Long id);
 
-  @Insert("insert into vacations(id, created_on, modified_on, starting_date, length, approved, user_id) values (#{id}, current_timestamp, current_timestamp, #{username}, #{startingDate}, #{role}, #{userId})")
+  @Insert("insert into vacations(id, created_on, modified_on, starting_date, length, approved, user_id) values (#{id}, current_timestamp, current_timestamp, #{startingDate}, #{length}, #{approved}, #{userId})")
   @SelectKey(before = true, statement = "select sq_vacations.nextval from dual", keyProperty = "id", resultType = Long.class)
   public int insert(Vacation entity);
 
