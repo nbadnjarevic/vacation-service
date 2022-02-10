@@ -1,6 +1,7 @@
 package com.nbadnjarevic.vacationservice.service;
 
 import com.nbadnjarevic.vacationservice.domain.User;
+import com.nbadnjarevic.vacationservice.service.dto.ChangePasswordRequest;
 
 public interface UserService {
 
@@ -9,5 +10,7 @@ public interface UserService {
   public User getUser(Long userId);
 
   public User register(User user);
+
+  public void changePassword(ChangePasswordRequest request);
 
 }

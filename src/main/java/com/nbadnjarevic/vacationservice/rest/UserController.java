@@ -2,6 +2,7 @@ package com.nbadnjarevic.vacationservice.rest;
 
 import com.nbadnjarevic.vacationservice.domain.User;
 import com.nbadnjarevic.vacationservice.service.UserService;
+import com.nbadnjarevic.vacationservice.service.dto.ChangePasswordRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,11 @@ public class UserController {
   @PostMapping("/registration")
   private ResponseEntity<?> register(@RequestBody User user) {
     return ResponseEntity.ok(userService.register(user));
+  }
+
+  @PostMapping("/change-password")
+  private void changePassword(@RequestBody ChangePasswordRequest request) {
+    userService.changePassword(request);
   }
 
 }
