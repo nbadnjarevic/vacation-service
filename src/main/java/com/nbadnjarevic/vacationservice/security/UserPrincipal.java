@@ -13,9 +13,11 @@ public class UserPrincipal implements UserDetails {
 
   private static final long serialVersionUID = -6818946193864908859L;
   private User user;
+  private Long id;
 
   UserPrincipal(User user) {
     this.user = user;
+    this.id = user.getId();
   }
 
   @Override
@@ -36,6 +38,8 @@ public class UserPrincipal implements UserDetails {
   public String getUsername() {
     return this.user.getUsername();
   }
+
+  public Long getId() { return this.user.getId(); }
 
   public User getUser() {
     return this.user;

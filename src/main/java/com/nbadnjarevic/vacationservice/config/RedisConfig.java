@@ -5,10 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
 
 @Configuration
 @EnableRedisRepositories
-public class RedisConfiguration {
+@EnableRedisHttpSession
+public class RedisConfig extends AbstractHttpSessionApplicationInitializer {
 
   @Bean
   public LettuceConnectionFactory redisConnectionFactory(

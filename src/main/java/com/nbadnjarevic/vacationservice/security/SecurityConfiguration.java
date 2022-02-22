@@ -50,8 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, "/login").permitAll()
         .antMatchers(HttpMethod.POST, "/users/registration").permitAll()
+        .antMatchers("/vacation/submitRequest").permitAll()
         .anyRequest().authenticated();
-
   }
 
   @Bean
