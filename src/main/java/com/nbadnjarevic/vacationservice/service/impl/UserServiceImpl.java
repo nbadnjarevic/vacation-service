@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
       throw new UserException(UserExceptionCode.USERNAME_TAKEN, "Username is already taken!", user.getUsername());
     }
     user.setRole(UserRole.REGULAR);
+    user.setPassword(encoder.encode(user.getPassword()));
     return userMapper.save(user);
   }
 

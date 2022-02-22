@@ -14,7 +14,7 @@ databaseChangeLog:
               created_on timestamp not null,
               modified_on timestamp not null,
               username varchar2(40) not null,
-              password varchar2(40),
+              password varchar2(256),
               role enum('REGULAR', 'ADMINISTRATOR')
             );
 
