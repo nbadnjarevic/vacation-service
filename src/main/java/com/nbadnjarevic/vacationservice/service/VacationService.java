@@ -14,4 +14,6 @@ public interface VacationService {
 
   public List<Vacation> getAllVacations();
 
+  public Vacation approveVacation(Long vacationId);
+
 }

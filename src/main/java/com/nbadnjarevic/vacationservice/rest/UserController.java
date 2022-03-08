@@ -3,7 +3,6 @@ package com.nbadnjarevic.vacationservice.rest;
 import com.nbadnjarevic.vacationservice.domain.User;
 import com.nbadnjarevic.vacationservice.service.UserService;
 import com.nbadnjarevic.vacationservice.service.dto.ChangePasswordRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
+
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
   @PostMapping("/registration")
   private ResponseEntity<?> register(@RequestBody User user) {

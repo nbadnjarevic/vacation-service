@@ -8,7 +8,6 @@ import com.nbadnjarevic.vacationservice.service.VacationService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -53,6 +52,14 @@ public class VacationServiceImpl implements VacationService {
   @Cacheable(value = "vacationCache")
   public List<Vacation> getAllVacations() {
     return vacationMapper.getAllVacations();
+  }
+
+  @Override
+  public Vacation approveVacation(Long vacationId) {
+    Vacation vacation = getVacation(vacationId);
+    vacation.setApproved(true);
+    vacationMapper.update(vacation);
+    return vacation;
   }
 
 }
