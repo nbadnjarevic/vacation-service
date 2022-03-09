@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.nbadnjarevic</groupId>
 	<artifactId>vacation-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>vacation-service</name>
 	<description>Mikroservis za administraciju informacija o godisnjim odmorima.</description>
 	<properties>
@@ -117,6 +117,13 @@
 			<version>3.4.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.spotify/dockerfile-maven-plugin -->
+		<dependency>
+			<groupId>com.spotify</groupId>
+			<artifactId>dockerfile-maven-plugin</artifactId>
+			<version>1.4.13</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -131,6 +138,27 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
